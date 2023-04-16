@@ -181,7 +181,7 @@ $(document).ready(function () {
 
             Swal.fire(
                 'Done!',
-                `${$(this).parent().parent().children().eq(1).text()} has been added to the cart`,
+                `${$(this).parent().parent().children().eq(1).text()} has been removed from the cart`,
                 'success'
             )
 

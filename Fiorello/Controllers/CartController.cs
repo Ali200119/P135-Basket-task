@@ -40,12 +40,12 @@ namespace Fiorello.Controllers
 
             foreach (var product in cart)
             {
-                Product dbProduct = await _context.Products.Include(p => p.ProductImages).FirstOrDefaultAsync(p => p.Id == product.Id);
+                Product dbProduct = await _context.Products.Where(p => !p.SoftDelete).Include(p => p.ProductImages).FirstOrDefaultAsync(p => p.Id == product.Id);
                 cartDetails.Add(new CartDetailVM
                 {
                     Id = dbProduct.Id,
                     Name = dbProduct.Name,
-                    Image = dbProduct.ProductImages.Where(pi => pi.IsMain).FirstOrDefault().Name,
+                    Image = dbProduct.ProductImages.Where(pi => pi.IsMain && !pi.SoftDelete).FirstOrDefault().Name,
                     Price = dbProduct.Price,
                     Count = product.Count
                 });

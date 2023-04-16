@@ -53,7 +53,7 @@ public class HomeController : Controller
     public async Task<IActionResult> AddToCart(int? id)
     {
         if (id is null) return BadRequest();
-        Product dbProduct = await _context.Products.Include(p => p.ProductImages).FirstOrDefaultAsync(p => p.Id == id);
+        Product dbProduct = await _context.Products.Where(p => !p.SoftDelete).Include(p => p.ProductImages).FirstOrDefaultAsync(p => p.Id == id);
 
         if (dbProduct is null) return NotFound();
 

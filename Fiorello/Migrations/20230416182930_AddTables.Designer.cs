@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiorello.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230405231109_AddInstagramsTable")]
-    partial class AddInstagramsTable
+    [Migration("20230416182930_AddTables")]
+    partial class AddTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,16 +50,6 @@ namespace Fiorello.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Abouts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Where flowers are our inspiration to create lasting memories. Whatever the occasion...",
-                            SoftDelete = false,
-                            Title = "<h1>Suprise Your <span>Valentine!</span> Let us arrange a smile.</h1>",
-                            VideoCover = "h3-video-img.jpg"
-                        });
                 });
 
             modelBuilder.Entity("Fiorello.Models.Advantage", b =>
@@ -89,32 +79,6 @@ namespace Fiorello.Migrations
                     b.HasIndex("AboutId");
 
                     b.ToTable("Advantages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AboutId = 1,
-                            Description = "Hand picked just for you.",
-                            Icon = "h1-custom-icon.png",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AboutId = 1,
-                            Description = "Unique flower arrangements.",
-                            Icon = "h1-custom-icon.png",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AboutId = 1,
-                            Description = "Best way to say you care.",
-                            Icon = "h1-custom-icon.png",
-                            SoftDelete = false
-                        });
                 });
 
             modelBuilder.Entity("Fiorello.Models.Blog", b =>
@@ -139,15 +103,6 @@ namespace Fiorello.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Blogs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "A perfect blend of creativity, energy, communication, happiness and love. Let us arrange a smile for you.",
-                            SoftDelete = false,
-                            Title = "From our Blog"
-                        });
                 });
 
             modelBuilder.Entity("Fiorello.Models.BlogPost", b =>
@@ -184,38 +139,26 @@ namespace Fiorello.Migrations
                     b.HasIndex("BlogId");
 
                     b.ToTable("BlogPosts");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BlogId = 1,
-                            Date = new DateTime(2019, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per",
-                            Image = "blog-feature-img-1.jpg",
-                            SoftDelete = false,
-                            Title = "Flower Power"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BlogId = 1,
-                            Date = new DateTime(2019, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per",
-                            Image = "blog-feature-img-2.jpg",
-                            SoftDelete = false,
-                            Title = "Local Florists"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BlogId = 1,
-                            Date = new DateTime(2019, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per",
-                            Image = "blog-feature-img-3.jpg",
-                            SoftDelete = false,
-                            Title = "Flower Beauty"
-                        });
+            modelBuilder.Entity("Fiorello.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("SoftDelete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Fiorello.Models.Expert", b =>
@@ -240,15 +183,6 @@ namespace Fiorello.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Experts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "A perfect blend of creativity, energy, communication, happiness and love. Let us arrange a smile for you.",
-                            SoftDelete = false,
-                            Title = "Flower Experts"
-                        });
                 });
 
             modelBuilder.Entity("Fiorello.Models.Instagram", b =>
@@ -269,56 +203,6 @@ namespace Fiorello.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Instagrams");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Image = "instagram1.jpg",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Image = "instagram2.jpg",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Image = "instagram3.jpg",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Image = "instagram4.jpg",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Image = "instagram5.jpg",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Image = "instagram6.jpg",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Image = "instagram7.jpg",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Image = "instagram8.jpg",
-                            SoftDelete = false
-                        });
                 });
 
             modelBuilder.Entity("Fiorello.Models.Person", b =>
@@ -352,44 +236,69 @@ namespace Fiorello.Migrations
                     b.HasIndex("ExpertId");
 
                     b.ToTable("Persons");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ExpertId = 1,
-                            Image = "h3-team-img-1.png",
-                            Name = "CRYSTAL BROOKS",
-                            Position = "Florist",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ExpertId = 1,
-                            Image = "h3-team-img-2.png",
-                            Name = "SHIRLEY HARRIS",
-                            Position = "Manager",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ExpertId = 1,
-                            Image = "h3-team-img-3.png",
-                            Name = "BEVERLY CLARK",
-                            Position = "Florist",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ExpertId = 1,
-                            Image = "h3-team-img-4.png",
-                            Name = "AMANDA WATKINS",
-                            Position = "Florist",
-                            SoftDelete = false
-                        });
+            modelBuilder.Entity("Fiorello.Models.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("SoftDelete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Fiorello.Models.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("SoftDelete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
                 });
 
             modelBuilder.Entity("Fiorello.Models.Quote", b =>
@@ -422,26 +331,6 @@ namespace Fiorello.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Quotes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus lingua.",
-                            Image = "testimonial-img-1.png",
-                            Name = "Anna Barnes",
-                            Position = "Florist",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget.",
-                            Image = "testimonial-img-2.png",
-                            Name = "Jasmine White",
-                            Position = "Florist",
-                            SoftDelete = false
-                        });
                 });
 
             modelBuilder.Entity("Fiorello.Models.Slider", b =>
@@ -462,26 +351,6 @@ namespace Fiorello.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sliders");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Image = "h3-slider-background.jpg",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Image = "h3-slider-background-2.jpg",
-                            SoftDelete = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Image = "h3-slider-background-3.jpg",
-                            SoftDelete = false
-                        });
                 });
 
             modelBuilder.Entity("Fiorello.Models.SliderInfo", b =>
@@ -510,16 +379,6 @@ namespace Fiorello.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SliderInfo");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Where flowers are our inspiration to create lasting memories. Whatever the occasion, our flowers will make it special cursus a sit amet mauris.",
-                            SignatureImage = "h2-sign-img.png",
-                            SoftDelete = false,
-                            Title = "<h1>Send <span>flowers</span> like</h1><h1>you mean it</h1>"
-                        });
                 });
 
             modelBuilder.Entity("Fiorello.Models.Subscribe", b =>
@@ -544,15 +403,6 @@ namespace Fiorello.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subscribes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BackgroundImage = "h3-background-img.jpg",
-                            SoftDelete = false,
-                            Title = "Join The Colorful Bunch!"
-                        });
                 });
 
             modelBuilder.Entity("Fiorello.Models.Advantage", b =>
@@ -588,6 +438,28 @@ namespace Fiorello.Migrations
                     b.Navigation("Expert");
                 });
 
+            modelBuilder.Entity("Fiorello.Models.Product", b =>
+                {
+                    b.HasOne("Fiorello.Models.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Fiorello.Models.ProductImage", b =>
+                {
+                    b.HasOne("Fiorello.Models.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Fiorello.Models.About", b =>
                 {
                     b.Navigation("Advantages");
@@ -598,9 +470,19 @@ namespace Fiorello.Migrations
                     b.Navigation("BlogPosts");
                 });
 
+            modelBuilder.Entity("Fiorello.Models.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
             modelBuilder.Entity("Fiorello.Models.Expert", b =>
                 {
                     b.Navigation("Persons");
+                });
+
+            modelBuilder.Entity("Fiorello.Models.Product", b =>
+                {
+                    b.Navigation("ProductImages");
                 });
 #pragma warning restore 612, 618
         }
